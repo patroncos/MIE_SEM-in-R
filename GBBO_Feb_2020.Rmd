@@ -1,0 +1,250 @@
+---
+title: "Demo using data from Great British Bake Off 2018"
+author: "Ana Morales-Gómez and Patricio Troncoso"
+date: "Latest update: February 2020"
+output:
+  html_document:
+    #df_print: paged
+   code_download: yes
+   highlighter: null
+   theme: cosmo
+   toc: yes
+   toc_depth: 4
+   toc_float: yes
+   fontsize: 12pt
+---
+
+This example will demonstrate the main functions of the package **dplyr**. We will be using (publically available) data of the participants of the Great British Bake Off 2018.
+
+First we need to load dplyr into R
+
+```{r, message=FALSE}
+library(dplyr)
+```
+
+## 1. Create your own dataset from scratch
+
+Here we are creating free variables (vectors in R)
+<br>
+
+```{r}
+names <- c("Antony", "Briony", "Dan","Imelda", "Jon", "Karen","Kim-Joy","Luke","Manon", "Rahul", "Ruby" ,"Terry")
+
+sex <- c("male", "female","male", "female", "male", "female", "female","male", "female", "male", "female", "male")
+
+hometown <- c("London", "Bristol", "London", "County Tyrone", "Newport","Wakefield", "Leeds", "Sheffield", "London", "Rotherham","London", "West Midlands")
+
+occupation <- c("Banker", "Full-time parent", "Full-time parent", "Countryside recreation officer", "Blood courier", "In-store sampling assistant", "Mental health specialist","Civil servant/house and techno DJ", "Software project manager", "Research scientist", "Project manager", "Retired air steward")
+
+age <- c(30, 33, 36, 33, 47, 60, 27, 30, 26, 30, 30, 56)
+```
+<br>
+And now we'll create two dataframes using the above variables
+<br>
+```{r}
+gbbo1<-data.frame(names, age, sex, occupation)
+gbbo2<-data.frame(names, hometown)
+```
+
+***
+## 2. Frequently used "dplyr" functions
+
+### 2.1. select()
+<br>
+
+Select the variables names and age
+
+<br>
+```{r, eval=FALSE}
+select(gbbo1, names, age, sex)
+```
+
+You can store the selected variables into a new dataframe 
+
+```{r}
+gbbo3<-select(gbbo1, names, age, sex)
+View(gbbo3) # This allows you to see the dataset in a different tab
+```
+***
+### 2.2. filter()
+<br>
+Now, filter (select) a subsample of gbbo participants younger than 30 and store them into a new dataframe
+
+```{r}
+filter(gbbo3, age<30)
+
+gbbo4<-filter(gbbo1, age<30)
+```
+***
+### 2.3. join()
+<br>
+Before, we created two dataframes: one containing most of the data (gbbo1) and another containing only names and hometown (gbbo2). This is to recreate a typical situation in research, where you find that your dataset does not contain all the variables you're interested in, but you have another dataset (or find one) that contains additional variables which you can link to your existing dataset by using an ID variable.
+<br>
+```{r}
+left_join(gbbo1, gbbo2, by = "names")
+```
+***
+**Note 1**: In this example we have been saving all the new datasets that we are creating. This is only done with the purpose of showing you the changes in the data after running the functions. But if you are working with big datasets, this is sometimes not a very good idea, since your R console will be populated with several datasets that are not being used.
+```{r}
+gbbo_all<- left_join(gbbo1, gbbo2, by = "names")
+```
+<br>
+
+**Note 2**: Whenever you are doing a **join** operation remember to always be dexterous and deft... and never confuse your right-hand side with your left 
+
+***
+### 2.4. rename()
+<br>
+Using `rename` function to change variable names. Here we are changing the variable "hometown" to "city"
+<br>
+```{r}
+rename(gbbo_all, "city"="hometown")
+```
+***
+### 2.5. summarise() 
+<br>
+Here we will get some descriptive statistics using the `summarise` function from `dplyr`. This function is only for numeric variables. 
+<br>
+```{r}
+summarise(gbbo_all, mean(age))
+```
+<br>
+`summarise` is very handy since it also allows us to save the summarised variable. You just need to specify a name before the requested statistics
+<br>
+```{r}
+summarise(gbbo_all, mean_age=mean(age))
+```
+<br>
+You can request more than one statistic and store them all
+<br>
+```{r}
+summarise(gbbo_all, mean_age=mean(age),
+                    sd(age),
+                    median(age))
+```
+***
+### 2.6. group_by()
+<br>
+This function works by grouping according to a variable
+<br>
+```{r}
+group_by(gbbo_all, sex)
+```
+<br>
+As you can see, `group by` does not seem to do anything. This is because it works in combination with other functions, for instance: `summarise`.
+<br>
+Let's save the group under a new dataset
+<br>
+```{r}
+bysex<-group_by(gbbo_all, sex) 
+```
+<br>
+And now, let's use this new dataset to get an indicator of the average age by sex of the participants.
+<br>
+```{r}
+summarise(bysex, age_mean=mean(age))
+```
+<br>
+We have created a new aggregated variable **age_mean** that takes the mean of the variable age according to sex. 
+***
+
+## 3. Piping
+<br>
+
+<center><iframe src="https://giphy.com/embed/l1wjo5rVFHrSE" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pipe-l1wjo5rVFHrSE">via GIPHY</a></p></center>
+
+<br>
+When you search for examples using **dplyr** on the web, you are very likely to encounter this symbol **%>%** called "pipe". We are not covering this in full detail, but below is an example of what it is and how to use it.
+
+<br>
+Pipes are meant to make the coding easy to write and read. It writes the code following a logical set of instructions. This is an example of the last code we used, but now rewritten with pipes
+
+<br>
+```{r}
+gbbo_all %>%                      # Take the data 
+  group_by(sex) %>%               # Now group it by sex
+  summarise(age_mean=mean(age))   # This is to create our aggregated variable, all in one go!
+```
+<br>
+
+If you are going to be using a summary like the above many times during your analysis, you can save it as a new object. It would help you avoid running the code over and over again. To do this, simply give it a name and use the assign arrow "<-". 
+
+<br>
+```{r}
+summary_gbbo <- gbbo_all %>%
+  group_by(sex) %>%   
+  summarise(age_mean=mean(age))
+
+summary_gbbo # this is to print the results on the console
+```
+
+***
+
+## 4. Plotting
+<br>
+To plot we can use the base package, but much nicer plots can be produced by using the package "ggplot2". Let's load it (you may need to install it if not available)
+<br>
+```{r}
+library(ggplot2)
+```
+<br>
+Now do a simple bar chart with the ages of GBBO participants:
+<br>
+```{r}
+ggplot(gbbo_all, aes(age)) + geom_bar()
+```
+<br>
+As you can see the bar chart above isn't terribly informative, so you can do an alternative plot with summary statistics. You can embed the code with the pipes from before and then run the plot command, as such:
+<br>
+```{r}
+ggplot(gbbo_all %>%                           
+  group_by(sex) %>%
+  summarise(age_mean=mean(age)), 
+  aes(y=age_mean, x=sex)) + 
+  geom_bar(stat = "identity") # we need to specify stat="identity" for the value itself to be plotted
+```
+<br>
+Perhaps a much simpler option would have been to save the command with pipes as a new dataframe, as such:
+<br>
+```{r}
+mean_by_sex<-gbbo_all %>%                           
+  group_by(sex) %>%
+  summarise(age_mean=mean(age))
+```
+<br>
+
+And then run the plot with the saved summary dataframe:
+
+<br>
+```{r}
+ggplot(mean_by_sex, aes(y=age_mean, x=sex)) + geom_bar(stat = "identity")
+```
+
+<br>
+
+***
+
+## Final comments
+
+There are *many* online resources to learn R. Here are some you can use:
+
+http://www.cookbook-r.com/
+<br>
+https://www.statmethods.net/
+<br>
+https://www.datacamp.com/
+<br>
+https://r4ds.had.co.nz/
+<br>
+https://rstudio.com/resources/webinars/
+<br>
+<br>
+
+Remember that you never finish learning R, sometimes R users feel like all we do is get better at googling our questions.
+
+<br>
+
+<center>
+
+<iframe src="https://giphy.com/embed/12xSrwKxHxB3BS" width="480" height="249" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/black-and-white-end-ending-12xSrwKxHxB3BS">via GIPHY</a></p>
+</center>
