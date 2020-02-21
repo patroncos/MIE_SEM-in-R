@@ -26,4 +26,4 @@ Some of these materials reproduce elements created by Ana Morales-Gomez, UK Data
 Copyright (c) 2020. Created by Patricio Troncoso, Manchester Institute of Education, The University of Manchester.
 
 <br>
-![image](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)
+This is distributed with Creative Commons Licence CC BY-NC-SA (Attribution-NonCommercial-ShareAlike)
