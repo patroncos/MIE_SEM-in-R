@@ -19,10 +19,11 @@ This is a tutorial for basic data manipulation functions. The rendered html is a
 ## This page is under construction. Still more to come.*
 
 All materials have been created in RStudio.
-Some of these materials reproduce elements shared by Ana Morales-Gomez, UK Data Service, The University of Manchester. This is her [Github profile page](https://github.com/A-mora).
+
+Some of these materials reproduce elements created by Ana Morales-Gomez, UK Data Service, The University of Manchester. This is her [Github profile page](https://github.com/A-mora).
 
 
 Copyright (c) 2020. Created by Patricio Troncoso, Manchester Institute of Education, The University of Manchester.
 
 <br>
-![](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)
+![image](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)
