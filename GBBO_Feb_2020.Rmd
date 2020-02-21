@@ -49,9 +49,10 @@ gbbo2<-data.frame(names, hometown)
 ***
 ## 2. Frequently used "dplyr" functions
 
-These functions are some of the most frequently used, but obviously not the only ones. "dplyr" is part of the "tidyverse", which is huge collection of packages.
+These functions are some of the most frequently used, but obviously not the only ones. "dplyr" is part of the "tidyverse", which is huge collection of packages. "dplyr" is used for data manipulation, which can be a whole course in its own right. If you're interested in this topic and want to learn more, you can have a look at these [slides](https://ukdataservice.ac.uk/media/622519/slides.pdf) and the accompanying [practicals](https://ukdataservice.ac.uk/news-and-events/eventsitem/?id=5498).
 
-https://ukdataservice.ac.uk/media/622519/slides.pdf
+<br>
+Now let's see functions in action:
 
 ### 2.1. select()
 <br>
