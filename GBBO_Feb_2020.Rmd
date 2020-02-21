@@ -49,6 +49,10 @@ gbbo2<-data.frame(names, hometown)
 ***
 ## 2. Frequently used "dplyr" functions
 
+These functions are some of the most frequently used, but obviously not the only ones. "dplyr" is part of the "tidyverse", which is huge collection of packages.
+
+https://ukdataservice.ac.uk/media/622519/slides.pdf
+
 ### 2.1. select()
 <br>
 
@@ -90,7 +94,7 @@ gbbo_all<- left_join(gbbo1, gbbo2, by = "names")
 ```
 <br>
 
-**Note 2**: Whenever you are doing a **join** operation remember to always be dexterous and deft... and never confuse your right-hand side with your left 
+**Note 2**: Whenever you are doing a **join** operation remember to always be dexterous and deft... and never confuse your right-hand side with your left [^1] 
 
 ***
 ### 2.4. rename()
@@ -150,8 +154,9 @@ We have created a new aggregated variable **age_mean** that takes the mean of th
 
 ## 3. Piping
 <br>
-
-<center><iframe src="https://giphy.com/embed/l1wjo5rVFHrSE" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pipe-l1wjo5rVFHrSE">via GIPHY</a></p></center>
+<center>
+![](https://media.giphy.com/media/l1wjo5rVFHrSE/giphy.gif)
+</center>
 
 <br>
 When you search for examples using **dplyr** on the web, you are very likely to encounter this symbol **%>%** called "pipe". We are not covering this in full detail, but below is an example of what it is and how to use it.
@@ -243,8 +248,9 @@ https://rstudio.com/resources/webinars/
 Remember that you never finish learning R, sometimes R users feel like all we do is get better at googling our questions.
 
 <br>
-
 <center>
-
-<iframe src="https://giphy.com/embed/12xSrwKxHxB3BS" width="480" height="249" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/black-and-white-end-ending-12xSrwKxHxB3BS">via GIPHY</a></p>
+![](https://media.giphy.com/media/12xSrwKxHxB3BS/giphy.gif)
 </center>
+
+
+[^1]: Does this ring a bell? It's inspired by Dr. Seuss' "Oh, the places you'll go!"
