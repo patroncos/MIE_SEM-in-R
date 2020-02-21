@@ -12,7 +12,7 @@ This session was run by Margarita Panayiotou. The materials are available [*here
 
 ### Practical 2: GBBO demo 
 
-This is a tutorial for basic data manipulation functions. The rendered html is available [*here*](https://rpubs.com/patroncos/577078). The code for for this tutorial is the file "GBBO_Feb_2020.Rmd".
+This is a tutorial for basic data manipulation functions. The rendered html is available [*here*](https://rpubs.com/patroncos/mie_seminar_s2_p2). The code for for this tutorial is the file "GBBO_Feb_2020.Rmd".
 
 ### Practical 3: Data manipulation and graphics
 
