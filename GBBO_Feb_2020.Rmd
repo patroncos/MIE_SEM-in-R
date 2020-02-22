@@ -187,10 +187,15 @@ summary_gbbo # this is to print the results on the console
 ***
 
 ## 4. Plotting
+
+```{r, echo=F, fig.align="center", out.width="300px", message=F, warning=F}
+knitr::include_graphics("trajectories.gif")
+
+```
 <br>
 To plot we can use the base package, but much nicer plots can be produced by using the package "ggplot2". Let's load it (you may need to install it if not available)
 <br>
-```{r}
+```{r, message=F, warning=F, echo=F}
 library(ggplot2)
 ```
 <br>
