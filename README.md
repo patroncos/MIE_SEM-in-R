@@ -10,7 +10,7 @@ This session was run by Margarita Panayiotou. The materials are available [*here
 
 ### Slides
 
-The slides for this session are available here.
+The slides for this session are available [**here**](https://github.com/patroncos/MIE_SEM-in-R/blob/master/A%20brief%20Introduction%20to%20R%20(Part%201).pdf).
 
 ### Practical 1: Getting started with R
 
