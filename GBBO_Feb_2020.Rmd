@@ -4,7 +4,6 @@ author: "Ana Morales-Gómez and Patricio Troncoso"
 date: "Latest update: February 2020"
 output:
   html_document:
-    #df_print: paged
    code_download: yes
    highlighter: null
    theme: cosmo
@@ -13,7 +12,9 @@ output:
    toc_float: yes
    fontsize: 12pt
    includes:
-      after_body: footer.html
+     in_header: header.html
+     after_body: footer.html
+      
 ---
 
 This example will demonstrate the main functions of the package **dplyr**. We will be using (publically available) data of the participants of the Great British Bake Off 2018.
