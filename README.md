@@ -8,13 +8,23 @@ This session was run by Margarita Panayiotou. The materials are available [*here
 
 ## Session 2: R basics
 
+### Slides
+
+The slides for this session are available here.
+
 ### Practical 1: Getting started with R
+
+This is gentle introduction to R. The practical is available [**here**](https://rpubs.com/patroncos/s2_p1). The code for this tutorial is the file "Practical1.Rmd"
 
 ### Practical 2: GBBO demo 
 
-This is a tutorial for basic data manipulation functions. The rendered html is available [*here*](https://rpubs.com/patroncos/mie_seminar_s2_p2). The code for for this tutorial is the file "GBBO_Feb_2020.Rmd".
+This is a tutorial for basic data manipulation functions. The practical is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p2). The code for this tutorial is the file "GBBO_Feb_2020.Rmd".
 
 ### Practical 3: Data manipulation and graphics
+
+This is a tutorial that includes some data manipulation, descriptive statistics and graphics. The practical is available [**here**](https://rpubs.com/patroncos/s2_p3).
+
+The code for this tutorial is the file "Practical3.Rmd"
 
 ## This page is under construction. Still more to come.*
 

@@ -1,0 +1,227 @@
+---
+title: 'Getting Started with R (and R Studio)'
+author: "Patricio Troncoso (with thanks to Ana Morales-Gomez)"
+date: "Latest update: February 2020"
+fontsize: 12pt
+output: 
+  html_document:
+    highlighter: null
+    theme: "cosmo"
+    #theme: "flatly"
+    code_download: TRUE
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 3
+    includes:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1. Introduction
+
+This is the first tutorial of the workshop. This is for you to familiarise yourself with R, R Studio and the console.
+<br>
+
+***
+# 2. Installing R and R Studio
+
+**You can go directly to 3 if you've installed R and R Studio**
+
+We will be using R Studio, but R studio can only work if R is already installed, so we need to have both installed.
+<br>
+
+***
+## 2.1. Installing R
+
+R is free and can be installed in Windows, Mac, Linux. Go to the [R project website](https://www.r-project.org/). Once there click on **Download R** and select a CRAN Mirror (you can choose any)
+
+Now, follow the instructions and you will have R installed in your own computer.  
+<br>
+
+***
+## 2.2.  Installing R Studio
+
+Go to the [R Studio website](https://rstudio.com/products/rstudio/download/), choose the free version and download the file according to your operating system.
+
+Once you have installed both R and R Studio, you don't need to interact at all with R. You can do everything you need from within R Studio.
+
+**Note:** R Studio can do everything that R can, but R cannot do everything that R Studio does
+<br>
+
+***
+# 3.Getting started with R Studio  
+
+## 3.1.  Working directory
+
+Set the working directory. In a real-life situation, this is where you saved your data.
+```{r, eval=FALSE}
+setwd("copy/the/Path/to/your/folder/here")
+```
+
+If you are unsure where your current working directory is, you can use the function `getwd()`, which literally means: "get working directory". The working directory will be printed on your console.
+
+```{r, eval=FALSE}
+getwd()
+```
+<br>
+
+***
+## 3.2. Open a new script
+
+Go to the top left corner, underneath the "File" menu, and click on the icon with a plus sign. That will open a new script for you to type your commands.
+<br>
+
+***
+## 3.3. Installing packages
+
+Installing packages can be done by coding or clicking on the "Tools" tab of the R Studio bar. You only need to install packages once (unless you change computer or there is an update).
+
+The code for installing packages is as follows:
+
+```{r, eval=FALSE}
+
+#one time instalation
+
+install.packages('tidyverse')
+install.packages('haven')
+install.packages("foreign")
+
+# You can also install more than one package at a time, adding a letter "c" for concatenate before the names of the packages
+
+install.packages(c("tidyverse", "haven"))
+
+```
+<br>
+
+***
+## 3.4. Loading packages
+
+Installing packages is the first step, but we still need to add another step to actually be able to use them. Unfortunately, this has to be done each time you start a new session in R or R Studio.
+
+Every time that you start a new data analysis project, it is a good practice to start your script with loading the packages that you want to use. You don't need to add them all at once, but it makes for tidier and more efficient coding if you do so.
+
+When installing, packages are downloaded to a `library` (a folder in your computer), so when we want to load packages to R, we use the function `library`.
+
+```{r}
+# Loading packages (load the packages in every session!)
+
+library(tidyverse)
+library(haven)
+library(foreign)
+```
+<br>
+
+***
+## 3.5.  Data types and structures
+
+Creating variables (vectors) of length 1, using the assign arrow
+
+```{r}
+a <- 3
+b <- 5
+c <- 9
+```
+
+We can perform basic operations with variables
+
+```{r}
+b*c
+```
+
+We can assign the result to a new variable called 'd'
+
+```{r}
+d <- b*c/a
+```
+
+and then, see the value of the variable "d"
+
+```{r}
+d
+```
+<br>
+
+***
+# 4. Loading/Importing data into R
+
+The function we use to import data into R will depend on the format in which the data is. Data in `.dat`, `.txt` or `.csv` formats can be read using base R functions (don't need to use any package), but data in Stata, SPSS or SAS format, to name a few, need a special package.
+
+The package [haven](https://cran.r-project.org/web/packages/haven/haven.pdf) can be used to easily import Stata and SPSS data files.
+
+Each of these packages has a specific function to read a specific dataset. You can check the package documentation (linked above) or a simple Google search to get your answer.
+
+The following example is to read in a `.dat` file from: Wright, D. and London, K. (2011). Modern Regression Techniques Using R, London: Sage. (Chapter 8). We use the base package function `read.delim`, as such
+
+```{r, warning=F, message=F}
+mydata <- read.delim("26934_exercise.dat")
+
+```
+
+You can also read online data directly if you specify the link, as such:
+
+*(This is from Wright and London's book website companion. It's the same data as before. You can use any of the two codes)*
+
+<br>
+```{r, message=FALSE, warning=F, eval=F}
+mydata<-read.delim("https://us.sagepub.com/sites/default/files/upm-binaries/26934_exercise.dat")
+```
+<br>
+
+***
+# 5. Explore the data
+
+If you want to browse the data to see what it contains, you can simply click on the "Environment" tab and then click on the corresponding object. Alternatively, you can use the following code:
+
+```{r, message=FALSE, warning=F, eval=F}
+View(mydata)
+```
+
+Or you can print the first six rows of data by typing:
+
+```{r, message=FALSE, warning=F}
+head(mydata)
+```
+
+To obtain descriptive statistics, you can type:
+
+```{r, message=FALSE, warning=F}
+mean(mydata$sqw2, na.rm=T) # na.rm=T is used to remove missing values
+
+sd(mydata$sqw2, na.rm=T) # that will give you the standard deviation
+
+```
+
+A much faster way of obtaining more detailed information about a variable is to use the `summary` function:
+
+```{r, message=FALSE, warning=F}
+summary(mydata$sqw2)
+```
+
+In the next practical, you will get to use more functions. This is just the first taster.
+<br>
+
+***
+# Bonus track
+
+If this is the first time you've been coding, then you need to be "initiated". Type the following on your R script:
+
+``` {r}
+myfirstprogramme<-function() {
+print("Hello World!")
+}
+```
+
+And then type:
+
+```{r}
+myfirstprogramme()
+
+```
+
+Welcome to world of coding!
+<center>
+![](https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif)
+</center>
