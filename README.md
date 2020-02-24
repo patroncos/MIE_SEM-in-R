@@ -6,8 +6,9 @@ Here you will find the materials for the MIE Seminar/Workshops in R and Mplus.
 
 This session was run by Margarita Panayiotou. The materials are available [*here*](https://www.dropbox.com/sh/s690e0bt8accjnn/AADmMqI3D_7qua1mn96x7Pt2a?dl=0)
 
-***
 <br>
+***
+
 ## Session 2: R basics
 
 ### Slides
@@ -28,13 +29,14 @@ This is a tutorial that includes some data manipulation, descriptive statistics 
 
 The code for this tutorial is the file "Practical3.Rmd"
 
-***
 <br>
+***
 
 ## This page is under construction. Still more to come.
 
 <br>
 ***
+
 All materials have been created in RStudio.
 
 <br>
