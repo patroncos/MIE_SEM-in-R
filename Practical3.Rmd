@@ -22,12 +22,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Some background information
 
-For this practical, we’ll be using open data from the following source: 
-  Wright, D. and London, K. (2011). Modern Regression Techniques Using R, London:  Sage. (Chapter 8). This is available [*here*](http://dx.doi.org/10.4135/9780857024497).
+For this practical, we’ll be using open data from the following source: Wright, D. and London, K. (2011). Modern Regression Techniques Using R, London:  Sage. (Chapter 8). This is available [*here*](http://dx.doi.org/10.4135/9780857024497).
 
 This dataset contains information about a randomised controlled trial, in which primary school pupils were asked about the time they spent doing exercises (weekly). Then, their classes (within schools) were divided into 4 different groups and pupils within those classes were given different treatments:
   
-  1) Control (no treatment at all)
+1) Control (no treatment at all)
 2) Leaflet (information about exercising)
 3) Leaflet+plan (the leaflet and a plan of exercise)
 4) Leaflet+plan+quiz (leaflet, plan and a quiz to do about exercising)
@@ -40,11 +39,10 @@ The variable wcond is the group or condition to which the class of the pupils wa
 
 # 1. Define a working directory
 
-You can use the directory as defined below on University-owned machines, as it provides a stable drive to work on 
+You can use any directory in your computer. As in the example below:
 
-(Remember to take your data and results with you and delete what you store on that drive after this session):
-  ```{}
-setwd("C:/Work")
+```{}
+setwd("C:/myfolder")
 ```
 
 # 2. Read in data 
@@ -71,16 +69,13 @@ For other basic functions, you can consult the [R reference card](https://cran.r
 
 But then, since this is a cluster randomised controlled trial, you might want to know the means and standard deviations by class.
 
-<br>
-***
-
 ## Task 1: Statistics by group
 
 Create a summary dataset containing the mean and standard deviation of the outcome, grouped by class.
 
 For this, you'll need to load the dplyr package:
   
-  ```{r,message=FALSE, warning=F}
+```{r,message=FALSE, warning=F}
 library(dplyr)
 
 summary_data <- mydata %>%
@@ -104,10 +99,6 @@ write.csv(summary_data, "summary_data.csv")
 
 That will save a `csv` file (which you can open in Excel) in your working directory.
 
-<br>
-  
-***
-  
 ## Task 2: Relationship between two variables
   
 You can obtain the Pearson correlation by typing: 
@@ -129,4 +120,61 @@ plot1<-ggplot(mydata,
   geom_point()
 
 plot1
+```
+
+We save plots to an object to be able to reproduce them more quickly. It is good practice, although not essential.
+
+You can modify plot1 by including a "colour" subcommand inside the "geom_point()" command. This would be for example: geom_point(colour="red")
+
+For more tips and example code, you can visit the following link: http://www.cookbook-r.com/Graphs/
+
+`ggplot2` works with "layers". The basic plot above can be enhanced by adding a different `geom` (layer) that gives further instructions to `ggplot`. Below we'll see some examples:
+
+
+## Task 3: Fitted line
+
+Add a single fitted line to plot1
+
+
+```{r, warning=F}
+
+plot2<- ggplot(mydata, aes(y=sqw2, x=sqw1)) +
+geom_point() +
+geom_smooth(method="lm", aes(y=sqw2, x=sqw1), se=T)
+
+plot2
+```
+
+
+
+## Task 4: Fitted line per class
+
+Add fitted lines per class. TO do this, you don't need to add a different `geom`, but insert a `group` statement inside the `aes` subcommand.
+
+<br>
+```{r, warning=F}
+plot3<- ggplot(mydata, aes(y=sqw2, x=sqw1, group=factor(class))) +
+geom_point() +
+geom_smooth(method="lm", aes(colour=factor(class)), se=F)
+
+plot3
+```
+
+
+
+## Bonus track
+
+It's easy to produce more elaborated graphics with ggplot2. Look at the example below. Try to identify the different layers that were added to plot3.
+
+<br>
+```{r, warning=F}
+plot4<- ggplot(mydata, aes(y=sqw2, x=sqw1, by=factor(class))) +
+geom_point(aes(colour=factor(class))) +
+geom_smooth(method="lm", aes(y=sqw2, x=sqw1), se=F) +
+facet_wrap(~class) + theme(legend.position = "none") +
+ylab("After") + xlab("Before") +
+theme_minimal() +
+ggtitle("Relationship between exercise before and after treatment by class")
+
+plot4
 ```

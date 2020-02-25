@@ -252,6 +252,8 @@ https://r4ds.had.co.nz/
 <br>
 https://rstudio.com/resources/webinars/
 <br>
+[**Click this if you like R and giraffes... and tea**](https://tinystats.github.io/teacups-giraffes-and-statistics/index.html)
+
 <br>
 
 Remember that you never finish learning R, sometimes R users feel like all we do is get better at googling our questions.
