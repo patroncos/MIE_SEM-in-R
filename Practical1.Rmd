@@ -1,5 +1,5 @@
 ---
-title: "Getting started with R"
+title: "Getting started with R <img src=\"seminars_logo.png\" width=\"200\" height=\"50\" style=\"float: right;\"/>"
 author: "Patricio Troncoso (with thanks to Ana Morales-Gomez)"
 date: "Latest update: February 2020"
 output: 
@@ -12,7 +12,7 @@ output:
     toc_float: TRUE
     toc_depth: 3
     includes:
-      in_header: header.html
+      #in_header: header.html
       after_body: footer.html
 ---
 

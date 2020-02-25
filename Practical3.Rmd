@@ -1,5 +1,5 @@
 ---
-title: "Data manipulation and graphics in R"
+title: "Data manipulation and graphics in R <img src=\"seminars_logo.png\" width=\"200\" height=\"50\" style=\"float: right;\"/>"
 author: "Patricio Troncoso"
 date: "Latest update: February 2020"
 output:
@@ -12,7 +12,7 @@ output:
     toc_float: yes
     fontsize: 12pt
     includes:
-      in_header: header.html
+      #in_header: header.html
       after_body: footer.html
 ---
   
