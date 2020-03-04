@@ -1,0 +1,301 @@
+---
+title: "Linear Regression <img src=\"seminars_logo.png\" width=\"200\" height=\"50\" style=\"float: right;\"/>"
+author: "Patricio Troncoso"
+date: "Latest update: March 2020"
+output: 
+  html_document:
+    code_download: yes
+    highlighter: null
+    theme: cosmo
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+    fontsize: 12pt
+    includes:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Some background information
+
+For this practical, we’ll be using open data from the following source: Wright, D. and London, K. (2011). Modern Regression Techniques Using R, London:  Sage. (Chapter 8). This is available [*here*](http://dx.doi.org/10.4135/9780857024497).
+
+This dataset contains information about a randomised controlled trial, in which primary school pupils were asked about the time they spent doing exercises (weekly). Then, their classes (within schools) were divided into 4 different groups and pupils within those classes were given different treatments:
+  
+1) Control (no treatment at all)
+2) Leaflet (information about exercising)
+3) Leaflet+plan (the leaflet and a plan of exercise)
+4) Leaflet+plan+quiz (leaflet, plan and a quiz to do about exercising)
+
+Pupils were asked again about the time they spent doing exercises (weekly) some time after the treatments were given.
+
+The variable sqw2 is the outcome (time spent doing exercises after treatment).
+The variable sqw1 is the measure before the treatment.
+The variable wcond is the group or condition to which the class of the pupils was assigned
+
+# Typical workflow setup
+
+## a) Define a working directory
+
+You can use any directory in your computer. As in the example below:
+
+```{}
+setwd("C:/myfolder")
+```
+
+## b) Read in data 
+
+This is from Wright and London's book website companion. 
+```{r, message=FALSE, warning=F}
+mydata<-read.delim("https://us.sagepub.com/sites/default/files/upm-binaries/26934_exercise.dat")
+```
+
+Note: You can safely ignore the warning when reading in the data.
+
+## c) Load packages
+
+You always need to load the packages that you will be using. In this practical, `ggplot2` is optional, but we'll load it anyway:
+
+```{r, message=FALSE, warning=F}
+library(ggplot2)
+```
+
+
+# Task 1: Correlation
+
+What is the correlation between exercise before and after the intervention?
+
+```{r}
+cor(mydata$sqw2, mydata$sqw1)
+```
+
+# Task 2: Simple linear regression
+
+Simple linear regression has the following algebraic form: 
+
+$$Y_i = \beta_0 + \beta_1x_{i1} + \epsilon_i$$
+
+Where:
+
+$Y_i$ is the dependent variable (outcome of interest)
+
+$\beta_0$ is the intercept (overall mean)
+
+$\beta_1$ is the change in the dependent variable when the independent variable changes in one unit
+
+$x_{i1}$ is the independent variable (aka explanatory variable, predictor or covariate)
+
+$\epsilon_i$ is the residual
+
+<br>
+
+To run a simple linear regression, we need to specify a name for our model (`model1`) and then call the function `lm` (linear model). Then we specify the data we will use `mydata`. Finally, we specify the actual statistical model: `sqw2` on the left-hand side as the dependent variable followed by `~` and then the right-hand side contains the independent variable `sqw1`.
+
+```{r}
+model1 <- lm(data = mydata, sqw2 ~ sqw1)
+
+summary(model1)
+```
+
+## Question time!
+
+**Q1.** What is the effect of `sqw1` on `sqw2`?
+
+<br>
+
+**Q2.** How much variance is explained?
+
+<br>
+
+# Task 3: Multiple linear regression
+
+Normally in social sciences, you wouldn't expect phenomena to be explained by only one variable. In the example we're working on 
+
+$$Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \dots + \beta_nx_{in} + \epsilon_i$$
+All the terms mean the same as before, so we'll focus on the new information:
+
+$\beta_2$ is the expected increase in the dependent variable conditional on the rest of the variables remaining constant
+
+$x_{i2}$ is a second independent variable 
+
+$\beta_nx_{in}$ is used to indicate that there can be multiple independent variables
+
+
+<br>
+
+Now, run a multiple linear regression model by adding the experimental condition variable. 
+
+Tip: The experimental condition is a categorical variable. In R, categorical variables are referred to as "factor". To add a factor variable to a regression model, you need to specify it as such: 
+
+```{}
+factor(name_of_variable)
+```
+
+
+```{r}
+model2 <- lm(data = mydata, sqw2 ~ sqw1 + factor(wcond))
+
+summary(model2)
+```
+
+## Question time!
+
+**Q3.** What is the effect of condition 2 in relation to the control group?
+
+<br>
+
+**Q4.** What is the effect of condition 3 in relation to the control group?
+
+<br>
+
+**Q5.** What is the effect of condition 4 in relation to the control group?
+
+<br>
+
+# Task 4: Adding interaction effects
+
+Adding interaction is fairly straightforward in R. All you need to do is "multiply" the terms you want to interact (using `*`).
+
+Take the previous model and add an interaction term between the experimental condition and exercise before the intervention.
+
+```{r}
+model3 <- lm(data = mydata, sqw2 ~ sqw1 + factor(wcond) + sqw1*factor(wcond))
+
+summary(model3)
+```
+## Question time!
+
+**Q6.** What is the R-squared of this model?
+
+<br>
+
+**Q7.** Does the addition of interactions improve the model?
+
+<br>
+
+# Task 5: Predictions
+
+You can calculate predicted values by using the values of the coefficients. So, for example, you can predict the score of a pupil who scored 2 in the baseline measure and was in the control group as such:
+
+Since the control group is coded 0, the equation for these pupils reduces to:
+
+${Y}_i = \beta_0 + \beta_1x_{i1}$
+
+Then 
+
+$\hat{y} = 0.38351 + 0.75041*baseline$
+
+$\hat{y} = 0.38351 + 0.75041*2$   
+
+$\hat{y} = 1.88433$
+
+The predicted score after the trial for a child in the control group who scored 2 at baseline is then 1.88433.
+
+## Question time!
+
+**Q8.** What is the predicted score for a child in condition 2 that scored 1.5 at baseline?
+
+<br>
+
+## Plotting the estimated model
+
+To do this, you can retrieve the predictions from your model object and plot them against the observed values of x
+
+```{r}
+mydata$predicted <- fitted(model3)
+```
+
+Remember: You need to load ggplot2 for this!
+
+```{r, warning=F, message=F}
+library(ggplot2)
+```
+
+Then draw a line plot. The resulting line is the predicted effect of sqw1 on sqw2, conditional upon the experimental condition and the interaction between sqw1 and the experimental condition.
+
+```{r}
+plot1 <- ggplot(mydata, aes(y = predicted, x = sqw1)) + 
+  geom_smooth(method = "lm", aes(y = predicted, x = sqw1), se=F)
+plot1
+```
+
+
+# Task 6: Checking assumptions
+
+We are going to focus on the two most basic assumption checks that you can do, which are to with the residuals. We will use graphic methods, since they are quite straightforward and easily understood. 
+
+## 6.1. Normality of residuals
+
+A key assumption in linear regression is that our residuals are normally distributed. This means roughly that whatever is left unexplained by our model could be thought of as random variation or "white noise".
+
+<br>
+
+```{r, echo=FALSE, fig.align= "center", out.width="100px", fig.cap="This is a very useful gif (found via Giphy) that shows random white noise", message=F, warning=F}
+knitr::include_graphics("https://media.giphy.com/media/vxcuu6bLZDdm0/giphy.gif")
+```
+
+<br>
+The normality of the residuals can be checked by running a formal statistical test, e.g. the Kolmogorov-Smirnov test, but those methods can be overly sensitive to small departures. Graphic methods, such as drawing a histogram or a Q-Q plot, are widely used instead.
+
+To draw a Q-Q plot from your model results, you can quickly use the base package as such:
+
+```{r, warning=F, message=F}
+plot(model3,2)
+```
+
+The result is a Q-Q plot or normal probability plot. It compares the residuals against the normal distribution. Put simply, the residuals (dots on the plot) should all lie on the diagonal line. Any obvious patterns would indicate that our model does not meet the normality assumption.
+
+## 6.2. Homoscedasticity
+
+Homoscedasticity means that residuals should distribute evenly in terms of spread across the predicted values of our model. In other words, if we plot residuals vs fitted values, it should look completely random, i.e. a random cloud of dots.
+
+To check this, we can run the following code:
+```{r, warning=F, message=F}
+plot(model3,1)
+```
+
+What we are interested to see here is no obvious patterns. In this specific plot, there seems to be some non-random pattern (not a huge one). The left-hand side of the distribution (lower predicted values) tends to have more positive residuals, whereas the right-hand side has more negative residuals. How do you address this? Usually by adding more variables to the model.
+
+# Bonus track
+
+You can add the residuals to your data (as a new variable) to be able to work with them alongside the observed data more easily.
+To retrieve the residuals of your model, you can do the following:
+
+```{r}
+mydata$residuals <- residuals(model3)
+```
+
+Then you can manipulate them as you wish and, for example, draw plots with `ggplot2`:
+
+This is to draw a histogram of the residuals:
+
+Or you can draw a much nicer plot with the `ggplot2` package:
+
+```{r, warning=F, message=F}
+hist <- ggplot(mydata, aes(residuals)) + geom_histogram()
+
+hist
+```
+
+And this is to check for homoscedasticity:
+
+```{r, warning=F, message=F}
+homoscedasticity <- ggplot(mydata, aes(y = residuals, x = predicted)) + geom_point()
+
+homoscedasticity
+```
+
+<br>
+
+# Acknowledgement
+
+This practical reproduces some of the materials created by Ana Morales-Gomez, UKDS, The University of Manchester. Those materials are available [**here**](https://github.com/A-mora/Crime-workshop).
+
+<br>
+
+```{r, echo=FALSE, fig.align= "center", out.width="200px", fig.cap="Thank you ever so much, Ana! (gif via Giphy)", message=F, warning=F}
+knitr::include_graphics("https://media.giphy.com/media/u7iKYyUPdmfFm/giphy.gif")
+```

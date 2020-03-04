@@ -1,0 +1,190 @@
+---
+title: "Logistic Regression <img src=\"seminars_logo.png\" width=\"200\" height=\"50\" style=\"float: right;\"/>"
+author: "Patricio Troncoso"
+date: "Latest update: March 2020"
+output: 
+  html_document:
+    code_download: yes
+    highlighter: null
+    theme: cosmo
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+    fontsize: 12pt
+    includes:
+      after_body: footer.html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Some background information
+
+For this practical, we’ll be using open data from the following source: Wright, D. and London, K. (2011). Modern Regression Techniques Using R, London:  Sage. (Chapter 8). This is available [*here*](http://dx.doi.org/10.4135/9780857024497).
+
+This dataset contains information about a randomised controlled trial, in which primary school pupils were asked about the time they spent doing exercises (weekly). Then, their classes (within schools) were divided into 4 different groups and pupils within those classes were given different treatments:
+  
+1) Control (no treatment at all)
+2) Leaflet (information about exercising)
+3) Leaflet+plan (the leaflet and a plan of exercise)
+4) Leaflet+plan+quiz (leaflet, plan and a quiz to do about exercising)
+
+Pupils were asked again about the time they spent doing exercises (weekly) some time after the treatments were given.
+
+The variable sqw2 is the outcome (time spent doing exercises after treatment).
+The variable sqw1 is the measure before the treatment.
+The variable wcond is the group or condition to which the class of the pupils was assigned
+
+# Typical workflow setup
+
+## Define a working directory
+
+You can use any directory in your computer. As in the example below:
+
+```{}
+setwd("C:/myfolder")
+```
+
+## Read in data 
+
+This is from Wright and London's book website companion. 
+```{r, message=FALSE, warning=F}
+mydata<-read.delim("https://us.sagepub.com/sites/default/files/upm-binaries/26934_exercise.dat")
+```
+
+Note: You can safely ignore the warning when reading in the data.
+
+## Load packages
+
+You always need to load the packages that you will be using. In this practical, we need to use the `dplyr` package:
+
+```{r, message=FALSE, warning=F}
+library(dplyr)
+```
+
+# Outcome variable
+
+The data we will use for this practical does not have a binary dependent variable, but we can easily create one by using a threshold for our continuous dependent variable `sqw2`
+
+First, we gather some information about our variable:
+
+```{r, message=FALSE, warning=F}
+summary(mydata$sqw2)
+```
+
+The mean of `sqw2` is 1.7892, so we'll use that as a threshold. The function we use to create a new variable is ifelse:
+
+```{r, message=FALSE, warning=F}
+mydata$bin_sqw2 <- ifelse(mydata$sqw2>=1.7892, 1, 0)
+```
+
+`ifelse` evaluates the condition `mydata$sqw2>=1.7892`; if true it returns 1 and if false it returns 0. To check whether this is done correctly, we can do the following:
+
+```{r, message=FALSE, warning=F}
+mydata %>%
+  group_by(bin_sqw2) %>%
+  summarise(mean=mean(sqw2))
+```
+
+The mean for those in group 0 should be lower than the mean for those in group 1.
+
+<br>
+
+# Task 1: Fit a simple binary logistic model
+
+$$logit(p_i) = \ln(\frac{p_i}{1-p_i}) = \beta_0 + \beta_1x_{i1}$$
+
+$logit(p_i)$ is the `link` function that allows us to convert binary variables into continuous measures
+
+$\ln(\frac{p_i}{1-p_i})$ is the natural logarithm of the `odds` of the event of interest
+
+$\beta_0$ is the overall mean or intercept
+
+$\beta_1$ is the expected increase in the `log-odds` when `x` changes in one unit
+
+$x_{i1}$ is the independent variable
+
+***
+
+**Note:** It is worth noting that logistic regression does not have an error term ($\epsilon$). Without going into too much detail, this is because the variance $p(1-p)$ of the binomial distribution depends on the mean $p$ 
+
+***
+<br>
+
+Now let's fit a logistic model. We'll use the function `glm` (generalised linear model), which follows the same logic of the function `lm` that we use for linear regression. The difference is that we need to the subcommand `family=binomial(logit)` to indicate that this is a binary logistic regression model (BLR).
+
+```{r, message=FALSE, warning=F}
+logmodel1<-glm(bin_sqw2 ~ sqw1, 
+               family=binomial(logit),
+               data=mydata)
+summary(logmodel1)
+```
+
+According to this model, the baseline score `sqw1` is significant predictor of scoring an average or above score after the trial. An increase of one unit implies an increase of 3.2418 log-odds of the outcome. The log-odds scale is not readily interpretable as it comes, but we know that a positive log-odds implies an increase in the odds (or probability) of the outcome of interest. So, the higher the score at baseline, the more likely a pupil is to score average or above after the trial. 
+We'll get back to the interpretation of this in the next task. 
+
+This is in line with what we found in the linear model. However, we know that the conditions of the trial also made a difference in scores after trial.
+
+<br>
+
+# Task 2: Fit a multiple binary logistic model
+
+The logic behind a multiple binary logistic model is the same than for linear regression. We rarely rely on one independent variable to explain variation in a dependent variable. We can extend the previous equation to allow for more independent variables as follows:
+
+$$logit(p_i) = \ln(\frac{p_i}{1-p_i}) = \beta_0 + \beta_1x_{i1}+ \beta_2x_{i2} + \dots + \beta_nx_{in}$$
+All the terms mean the same as before, so we'll focus on the new information:
+
+$\beta_2$ is the expected increase in the dependent variable conditional on the rest of the variables remaining constant
+
+$x_{i2}$ is a second independent variable 
+
+$\beta_nx_{in}$ is used to indicate that there can be multiple independent variables
+
+Now, let's fit a model that includes the trial conditions (`wcond`):
+
+```{r, message=FALSE, warning=F}
+logmodel2<-glm(bin_sqw2 ~ sqw1 + factor(wcond), 
+               family=binomial(logit),
+               data=mydata)
+summary(logmodel2)
+```
+
+Each of the wcond coefficients refer to the difference between the specific condition and the control group. For example, `wcond4` has an expected log-odds estimate that is 0.8838 larger than the log-odds of the control group. This is statistically significant since `p=0.00969`.
+
+But the problem is that results are in the log-odds scale; thus, not necessarily easy to interpret. To see the results in odds ratio, we need to do exponentiation. You can do exp() for each coefficient separately, or you can access all the coefficients of the fitted model object.
+
+```{r, message=FALSE, warning=F}
+
+exp(logmodel2$coefficients)
+
+```
+
+Now you can see that children in Leaflet+plan+quiz are 2.42 times as likely to have an average or above score after the trial.
+
+## Question time!
+
+**Q1.** What is the effect of Leaflet+plan compared to the control group?
+
+## Confidence intervals
+
+To get the confidence intervals for logmodel2 in the log-odds and the odds-ratio scales, we can type the following:
+
+```{r, message=FALSE, warning=F}
+
+confint(logmodel2)
+exp(confint(logmodel2))
+
+```
+
+# Bonus track
+
+Odds can be further converted to probabilities by using the following formula:
+
+$$p = \frac{OR}{1+OR} = \frac{exp(\beta)}{1+exp(\beta)}$$
+<br>
+
+
+## Question time!
+
+**Q2.** What is the probability of Leaflet to have an average or above score after the trial?
