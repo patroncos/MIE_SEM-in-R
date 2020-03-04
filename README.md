@@ -31,6 +31,27 @@ This is a tutorial that includes some data manipulation, descriptive statistics 
 
 The code for this tutorial is the file "Practical3.Rmd"
 
+## Session 3: Regression in R and Mplus
+
+### Slides
+
+To be made available soon...
+
+### Practical 4: Linear regression
+
+This is a tutorial designed to give a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
+
+The practical in R is available [**here**](https://rpubs.com/patroncos/s2_p4)
+
+The code for this tutorial is the file "Practical4.Rmd"
+
+### Practical 5: Binary logistic regression
+
+This is a tutorial designed to give a taster of what it's like to analyse data using binary logistic regression. This is when our outcome of interest is binary (0s and 1s). The data used is from a cluster randomised controlled trial.
+
+The practical in R is available [**here**](https://rpubs.com/patroncos/s2_p5)
+
+The code for this tutorial is the file "Practical5.Rmd"
 
 ## This page is under construction. Still more to come.
 
