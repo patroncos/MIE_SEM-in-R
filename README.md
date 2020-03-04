@@ -15,7 +15,7 @@ The slides for this session are available [**here**](https://github.com/patronco
 
 ### Practical 1: Getting started with R
 
-This is a gentle introduction to R. The practical is available [**here**](https://rpubs.com/patroncos/s2_p1). 
+This is a gentle introduction to R. The practical is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p1). 
 
 The code for this tutorial is the file "Practical1.Rmd"
 
@@ -27,7 +27,7 @@ The code for this tutorial is the file "GBBO_Feb_2020.Rmd".
 
 ### Practical 3: Data manipulation and graphics
 
-This is a tutorial that includes some data manipulation, descriptive statistics and graphics. The practical is available [**here**](https://rpubs.com/patroncos/s2_p3).
+This is a tutorial that includes some data manipulation, descriptive statistics and graphics. The practical is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p3).
 
 The code for this tutorial is the file "Practical3.Rmd"
 
@@ -41,7 +41,7 @@ To be made available soon...
 
 This is a tutorial designed to give a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
 
-The practical in R is available [**here**](https://rpubs.com/patroncos/s2_p4)
+The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p4)
 
 The code for this tutorial is the file "Practical4.Rmd"
 
@@ -49,7 +49,7 @@ The code for this tutorial is the file "Practical4.Rmd"
 
 This is a tutorial designed to give a taster of what it's like to analyse data using binary logistic regression. This is when our outcome of interest is binary (0s and 1s). The data used is from a cluster randomised controlled trial.
 
-The practical in R is available [**here**](https://rpubs.com/patroncos/s2_p5)
+The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p5)
 
 The code for this tutorial is the file "Practical5.Rmd"
 
