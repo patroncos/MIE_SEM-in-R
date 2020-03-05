@@ -1,0 +1,407 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020   4:52 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: simple linear regression
+  Task 3: Multiple regression
+  with 1 continuous IV and 1 3 dummy variables
+
+
+  DATA:
+
+  file = 'RegressionMplus.dat';
+  !this is a free format file
+
+  VARIABLE:
+
+  names = wcond class	w1sn02 w2sn02 w1int	w2int w1att	
+          w2att z1pbc	z2pbc sqw1 sqw2;
+
+  usevariables = sqw1 sqw2 wcond2 wcond3 wcond4;
+  !only the variables you need to use in the model
+  !new variables (wcond2-wcond4) are mentioned last
+
+
+
+
+  DEFINE: !defining 3 dummy variables
+  !creating 3 new variables with 0/1 values
+  !don't forget to add these in the usevariables above
+  !New variables need to always mentioned last
+
+
+  wcond2 = 0;
+  if (wcond == 2) then wcond2 = 1;
+  wcond3 = 0;
+  if (wcond == 3) then wcond3 = 1;
+  wcond4 = 0;
+  if (wcond == 4) then wcond4 = 1;
+
+
+
+
+  ANALYSIS:
+
+  estimator = ml; !maximum likelihood
+
+
+  MODEL:
+
+  sqw2 on sqw1 wcond2 wcond3 wcond4;
+  !the outcome is predicted by sqw1 and the 3
+  !conditions
+
+
+
+  OUTPUT: stand res sampstat;
+  !stand: standardized results
+  !res = residuals
+  !sampstat: sample statistics
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+simple linear regression
+Task 3: Multiple regression
+with 1 continuous IV and 1 3 dummy variables
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         503
+
+Number of dependent variables                                    1
+Number of independent variables                                  4
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   SQW2
+
+Observed independent variables
+   SQW1        WCOND2      WCOND3      WCOND4
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  RegressionMplus.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+                1.789         1.681         0.252         0.260         0.233
+
+
+           Covariances
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.317
+ SQW1           0.259         0.363
+ WCOND2         0.013         0.013         0.189
+ WCOND3        -0.002        -0.025        -0.066         0.193
+ WCOND4         0.025         0.012        -0.059        -0.061         0.178
+
+
+           Correlations
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           1.000
+ SQW1           0.765         1.000
+ WCOND2         0.052         0.050         1.000
+ WCOND3        -0.007        -0.096        -0.345         1.000
+ WCOND4         0.107         0.046        -0.320        -0.327         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SQW2                  1.789      -0.102       0.707   10.14%       1.225      1.581      1.871
+             503.000       0.317      -0.083       3.240    1.39%       1.871      2.121
+     SQW1                  1.681       0.079       0.707   15.90%       1.225      1.581      1.581
+             503.000       0.363      -0.305       3.536    0.20%       1.871      2.121
+     WCOND2                0.252       1.139       0.000   74.75%       0.000      0.000      0.000
+             503.000       0.189      -0.702       1.000   25.25%       0.000      1.000
+     WCOND3                0.260       1.092       0.000   73.96%       0.000      0.000      0.000
+             503.000       0.193      -0.808       1.000   26.04%       0.000      1.000
+     WCOND4                0.233       1.266       0.000   76.74%       0.000      0.000      0.000
+             503.000       0.178      -0.398       1.000   23.26%       0.000      1.000
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        6
+
+Loglikelihood
+
+          H0 Value                        -188.314
+          H1 Value                        -188.314
+
+Information Criteria
+
+          Akaike (AIC)                     388.629
+          Bayesian (BIC)                   413.952
+          Sample-Size Adjusted BIC         394.908
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            472.463
+          Degrees of Freedom                     4
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.716      0.026     27.362      0.000
+    WCOND2             0.158      0.044      3.573      0.000
+    WCOND3             0.207      0.044      4.733      0.000
+    WCOND4             0.218      0.045      4.832      0.000
+
+ Intercepts
+    SQW2               0.441      0.054      8.182      0.000
+
+ Residual Variances
+    SQW2               0.124      0.008     15.859      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.767      0.019     40.608      0.000
+    WCOND2             0.122      0.034      3.564      0.000
+    WCOND3             0.162      0.034      4.710      0.000
+    WCOND4             0.163      0.034      4.809      0.000
+
+ Intercepts
+    SQW2               0.784      0.113      6.954      0.000
+
+ Residual Variances
+    SQW2               0.391      0.027     14.369      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               1.273      0.035     35.910      0.000
+    WCOND2             0.280      0.078      3.586      0.000
+    WCOND3             0.368      0.077      4.763      0.000
+    WCOND4             0.387      0.079      4.864      0.000
+
+ Intercepts
+    SQW2               0.784      0.113      6.954      0.000
+
+ Residual Variances
+    SQW2               0.391      0.027     14.369      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.716      0.026     27.362      0.000
+    WCOND2             0.158      0.044      3.573      0.000
+    WCOND3             0.207      0.044      4.733      0.000
+    WCOND4             0.218      0.045      4.832      0.000
+
+ Intercepts
+    SQW2               0.441      0.054      8.182      0.000
+
+ Residual Variances
+    SQW2               0.124      0.008     15.859      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SQW2               0.609      0.027     22.389      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.109E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+                1.789         1.681         0.252         0.260         0.233
+
+
+           Residuals for Means
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Means
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+                0.000         0.000         0.000         0.000         0.000
+
+
+           Model Estimated Covariances
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.317
+ SQW1           0.259         0.363
+ WCOND2         0.013         0.013         0.189
+ WCOND3        -0.002        -0.025        -0.066         0.193
+ WCOND4         0.025         0.012        -0.059        -0.061         0.178
+
+
+           Model Estimated Correlations
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           1.000
+ SQW1           0.765         1.000
+ WCOND2         0.052         0.050         1.000
+ WCOND3        -0.007        -0.096        -0.345         1.000
+ WCOND4         0.107         0.046        -0.320        -0.327         1.000
+
+
+           Residuals for Covariances
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+ WCOND2         0.000         0.000         0.000
+ WCOND3         0.000         0.000         0.000         0.000
+ WCOND4         0.000         0.000         0.000         0.000         0.000
+
+
+           Residuals for Correlations
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+ WCOND2         0.000         0.000         0.000
+ WCOND3         0.000         0.000         0.000         0.000
+ WCOND4         0.000         0.000         0.000         0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+ WCOND2         0.000         0.000         0.000
+ WCOND3         0.000         0.000         0.000         0.000
+ WCOND4         0.000         0.000         0.000         0.000         0.000
+
+
+           Normalized Residuals for Covariances
+              SQW2          SQW1          WCOND2        WCOND3        WCOND4
+              ________      ________      ________      ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+ WCOND2         0.000         0.000         0.000
+ WCOND3         0.000         0.000         0.000         0.000
+ WCOND4         0.000         0.000         0.000         0.000         0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\mewxsmpb\desktop\prac4_task 3.dgm
+
+     Beginning Time:  16:52:52
+        Ending Time:  16:52:52
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

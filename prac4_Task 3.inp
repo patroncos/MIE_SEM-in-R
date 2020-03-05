@@ -1,0 +1,56 @@
+TITLE: simple linear regression
+Task 3: Multiple regression
+with 1 continuous IV and 1 3 dummy variables
+
+
+DATA:
+
+file = 'RegressionMplus.dat';
+!this is a free format file
+
+VARIABLE:
+
+names = wcond class	w1sn02 w2sn02 w1int	w2int w1att	
+        w2att z1pbc	z2pbc sqw1 sqw2;
+
+usevariables = sqw1 sqw2 wcond2 wcond3 wcond4;
+!only the variables you need to use in the model
+!new variables (wcond2-wcond4) are mentioned last
+
+
+
+
+DEFINE: !defining 3 dummy variables
+!creating 3 new variables with 0/1 values
+!don't forget to add these in the usevariables above
+!New variables need to always mentioned last 
+
+
+wcond2 = 0; 
+if (wcond == 2) then wcond2 = 1;
+wcond3 = 0;
+if (wcond == 3) then wcond3 = 1;
+wcond4 = 0;
+if (wcond == 4) then wcond4 = 1;
+
+
+
+
+ANALYSIS:
+
+estimator = ml; !maximum likelihood
+
+
+MODEL:
+
+sqw2 on sqw1 wcond2 wcond3 wcond4; 
+!the outcome is predicted by sqw1 and the 3
+!conditions
+
+
+
+OUTPUT: stand res sampstat; 
+!stand: standardized results
+!res = residuals
+!sampstat: sample statistics
+

@@ -1,0 +1,71 @@
+TITLE: simple linear regression
+Task 4: Interaction terms 
+and normality assumptions checked (plots)
+
+
+DATA:
+
+file = 'RegressionMplus.dat';
+!this is a free format file
+
+
+VARIABLE:
+
+names = wcond class	w1sn02 w2sn02 w1int	w2int w1att	
+        w2att z1pbc	z2pbc sqw1 sqw2;
+
+
+usevariables = sqw1 sqw2 wcond2 wcond3 wcond4
+sqw1C2 sqw1C3 sqw1C4;
+!new variables that were created in the DEFINE command
+!are mentioned last (wcond2-sqw1C4); 
+
+DEFINE: 
+
+!defining 3 dummy variables
+!creating 3 new variables with 0/1 values
+!don't forget to add these in the usevariables above
+!New variables need to always mentioned last 
+
+wcond2 = 0; 
+if (wcond == 2) then wcond2 = 1;
+wcond3 = 0;
+if (wcond == 3) then wcond3 = 1;
+wcond4 = 0;
+if (wcond == 4) then wcond4 = 1;
+
+
+!Creating 3 interaction terms by
+!multiplying the original predictor 
+!with the 3 conditions 
+
+sqw1C2 = sqw1*wcond2; 
+sqw1C3 = sqw1*wcond3; 
+sqw1C4 = sqw1*wcond4; 
+
+
+
+ANALYSIS:
+
+estimator = ml; !maximum likelihood
+
+
+MODEL:
+
+sqw2 on sqw1 wcond2 wcond3 wcond4 
+sqw1C2 sqw1C3 sqw1C4;
+
+!sqw2 predicted by sqw1, the 3 conditions, 
+!and their interactions 
+
+
+OUTPUT: stand res sampstat; 
+!stand: standardized results
+!res = residuals
+!sampstat: sample statistics
+
+
+PLOT: type = plot1 plot3;
+!for a description of what is available 
+!for each PLOT see pages 846-848 of the 
+!Mplus user manual

@@ -1,0 +1,350 @@
+Mplus VERSION 8.3
+MUTHEN & MUTHEN
+03/05/2020   4:51 PM
+
+INPUT INSTRUCTIONS
+
+  TITLE: simple linear regression
+  Task 2: Simple regression with one IV
+
+  DATA:
+
+  file = 'RegressionMplus.dat';
+  !this is a free format file
+
+  VARIABLE:
+
+  names = wcond class	w1sn02 w2sn02 w1int	w2int w1att	
+          w2att z1pbc	z2pbc sqw1 sqw2;
+
+  usevariables = sqw1 sqw2;
+
+  !only the variables you need to use in the model
+
+
+
+  ANALYSIS:
+
+  estimator = ml; !maximum likelihood
+
+
+
+  MODEL:
+
+  sqw2 on sqw1; !ON defines regression
+
+  !dependent ON independent
+  !the DV always appears before ON
+  !the IV always appear after ON
+
+
+
+
+
+  OUTPUT: stand res sampstat;
+  !stand: standardized results
+  !res = residuals
+  !sampstat: sample statistics
+
+
+
+
+INPUT READING TERMINATED NORMALLY
+
+
+
+simple linear regression
+Task 2: Simple regression with one IV
+
+SUMMARY OF ANALYSIS
+
+Number of groups                                                 1
+Number of observations                                         503
+
+Number of dependent variables                                    1
+Number of independent variables                                  1
+Number of continuous latent variables                            0
+
+Observed dependent variables
+
+  Continuous
+   SQW2
+
+Observed independent variables
+   SQW1
+
+
+Estimator                                                       ML
+Information matrix                                        OBSERVED
+Maximum number of iterations                                  1000
+Convergence criterion                                    0.500D-04
+Maximum number of steepest descent iterations                   20
+
+Input data file(s)
+  RegressionMplus.dat
+
+Input data format  FREE
+
+
+SAMPLE STATISTICS
+
+
+     SAMPLE STATISTICS
+
+
+           Means
+              SQW2          SQW1
+              ________      ________
+                1.789         1.681
+
+
+           Covariances
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.317
+ SQW1           0.259         0.363
+
+
+           Correlations
+              SQW2          SQW1
+              ________      ________
+ SQW2           1.000
+ SQW1           0.765         1.000
+
+
+UNIVARIATE SAMPLE STATISTICS
+
+
+     UNIVARIATE HIGHER-ORDER MOMENT DESCRIPTIVE STATISTICS
+
+         Variable/         Mean/     Skewness/   Minimum/ % with                Percentiles
+        Sample Size      Variance    Kurtosis    Maximum  Min/Max      20%/60%    40%/80%    Median
+
+     SQW2                  1.789      -0.102       0.707   10.14%       1.225      1.581      1.871
+             503.000       0.317      -0.083       3.240    1.39%       1.871      2.121
+     SQW1                  1.681       0.079       0.707   15.90%       1.225      1.581      1.581
+             503.000       0.363      -0.305       3.536    0.20%       1.871      2.121
+
+
+THE MODEL ESTIMATION TERMINATED NORMALLY
+
+
+
+MODEL FIT INFORMATION
+
+Number of Free Parameters                        3
+
+Loglikelihood
+
+          H0 Value                        -203.345
+          H1 Value                        -203.345
+
+Information Criteria
+
+          Akaike (AIC)                     412.690
+          Bayesian (BIC)                   425.352
+          Sample-Size Adjusted BIC         415.830
+            (n* = (n + 2) / 24)
+
+Chi-Square Test of Model Fit
+
+          Value                              0.000
+          Degrees of Freedom                     0
+          P-Value                           0.0000
+
+RMSEA (Root Mean Square Error Of Approximation)
+
+          Estimate                           0.000
+          90 Percent C.I.                    0.000  0.000
+          Probability RMSEA <= .05           0.000
+
+CFI/TLI
+
+          CFI                                1.000
+          TLI                                1.000
+
+Chi-Square Test of Model Fit for the Baseline Model
+
+          Value                            442.402
+          Degrees of Freedom                     1
+          P-Value                           0.0000
+
+SRMR (Standardized Root Mean Square Residual)
+
+          Value                              0.000
+
+
+
+MODEL RESULTS
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.714      0.027     26.628      0.000
+
+ Intercepts
+    SQW2               0.589      0.048     12.288      0.000
+
+ Residual Variances
+    SQW2               0.131      0.008     15.859      0.000
+
+
+STANDARDIZED MODEL RESULTS
+
+
+STDYX Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.765      0.019     41.333      0.000
+
+ Intercepts
+    SQW2               1.046      0.110      9.542      0.000
+
+ Residual Variances
+    SQW2               0.415      0.028     14.661      0.000
+
+
+STDY Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               1.269      0.035     36.410      0.000
+
+ Intercepts
+    SQW2               1.046      0.110      9.542      0.000
+
+ Residual Variances
+    SQW2               0.415      0.028     14.661      0.000
+
+
+STD Standardization
+
+                                                    Two-Tailed
+                    Estimate       S.E.  Est./S.E.    P-Value
+
+ SQW2     ON
+    SQW1               0.714      0.027     26.628      0.000
+
+ Intercepts
+    SQW2               0.589      0.048     12.288      0.000
+
+ Residual Variances
+    SQW2               0.131      0.008     15.859      0.000
+
+
+R-SQUARE
+
+    Observed                                        Two-Tailed
+    Variable        Estimate       S.E.  Est./S.E.    P-Value
+
+    SQW2               0.585      0.028     20.667      0.000
+
+
+QUALITY OF NUMERICAL RESULTS
+
+     Condition Number for the Information Matrix              0.216E-01
+       (ratio of smallest to largest eigenvalue)
+
+
+RESIDUAL OUTPUT
+
+
+     ESTIMATED MODEL AND RESIDUALS (OBSERVED - ESTIMATED)
+
+
+           Model Estimated Means
+              SQW2          SQW1
+              ________      ________
+                1.789         1.681
+
+
+           Residuals for Means
+              SQW2          SQW1
+              ________      ________
+                0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Means
+              SQW2          SQW1
+              ________      ________
+                0.000         0.000
+
+
+           Normalized Residuals for Means
+              SQW2          SQW1
+              ________      ________
+                0.000         0.000
+
+
+           Model Estimated Covariances
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.317
+ SQW1           0.259         0.363
+
+
+           Model Estimated Correlations
+              SQW2          SQW1
+              ________      ________
+ SQW2           1.000
+ SQW1           0.765         1.000
+
+
+           Residuals for Covariances
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+
+
+           Residuals for Correlations
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.000
+ SQW1           0.000         0.000
+
+
+           Standardized Residuals (z-scores) for Covariances
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.068
+ SQW1           0.075         0.000
+
+
+           Normalized Residuals for Covariances
+              SQW2          SQW1
+              ________      ________
+ SQW2           0.001
+ SQW1           0.001         0.000
+
+
+DIAGRAM INFORMATION
+
+  Use View Diagram under the Diagram menu in the Mplus Editor to view the diagram.
+  If running Mplus from the Mplus Diagrammer, the diagram opens automatically.
+
+  Diagram output
+    c:\users\mewxsmpb\desktop\prac4_task2.dgm
+
+     Beginning Time:  16:51:08
+        Ending Time:  16:51:08
+       Elapsed Time:  00:00:00
+
+
+
+MUTHEN & MUTHEN
+3463 Stoner Ave.
+Los Angeles, CA  90066
+
+Tel: (310) 391-9971
+Fax: (310) 391-8971
+Web: www.StatModel.com
+Support: Support@StatModel.com
+
+Copyright (c) 1998-2019 Muthen & Muthen

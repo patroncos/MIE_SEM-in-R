@@ -1,0 +1,42 @@
+TITLE: simple linear regression
+Task 2: Simple regression with one IV
+
+DATA:
+
+file = 'RegressionMplus.dat';
+!this is a free format file
+
+VARIABLE:
+
+names = wcond class	w1sn02 w2sn02 w1int	w2int w1att	
+        w2att z1pbc	z2pbc sqw1 sqw2;
+
+usevariables = sqw1 sqw2;
+
+!only the variables you need to use in the model
+
+
+
+ANALYSIS:
+
+estimator = ml; !maximum likelihood
+
+
+
+MODEL:
+
+sqw2 on sqw1; !ON defines regression 
+
+!dependent ON independent 
+!the DV always appears before ON
+!the IV always appear after ON
+    
+
+
+
+
+OUTPUT: stand res sampstat; 
+!stand: standardized results
+!res = residuals
+!sampstat: sample statistics
+
