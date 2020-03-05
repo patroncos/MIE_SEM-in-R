@@ -35,7 +35,8 @@ The code for this tutorial is the file "Practical3.Rmd"
 
 ### Slides
 
-To be made available soon...
+The slides for this session are available [**here**](https://github.com/patroncos/MIE_SEM-in-R/blob/master/Regression%20in%20R%20and%20Mplus.pdf).
+
 
 ### Practical 4: Linear regression
 
