@@ -41,7 +41,7 @@ To be made available soon...
 
 This is a tutorial designed to give a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
 
-The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p4)
+The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p4)
 
 The code for this tutorial is the file "Practical4.Rmd"
 
@@ -49,9 +49,11 @@ The code for this tutorial is the file "Practical4.Rmd"
 
 This is a tutorial designed to give a taster of what it's like to analyse data using binary logistic regression. This is when our outcome of interest is binary (0s and 1s). The data used is from a cluster randomised controlled trial.
 
-The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s2_p5)
+The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p5)
 
 The code for this tutorial is the file "Practical5.Rmd"
+
+***
 
 ## This page is under construction. Still more to come.
 

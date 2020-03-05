@@ -63,14 +63,23 @@ You always need to load the packages that you will be using. In this practical, 
 library(ggplot2)
 ```
 
+***
 
 # Task 1: Correlation
+
+Before we start any data analysis process is to 
 
 What is the correlation between exercise before and after the intervention?
 
 ```{r}
 cor(mydata$sqw2, mydata$sqw1)
 ```
+
+Correlations go from -1 to 1, so we can safely say that these two variables are highly correlated. This is not surprising at all, since what we're measuring is behaviour (time spent doing exercises) and you know what they say "the best predictor of future behaviour is past behaviour" [^1].
+
+In any case, this is overly simplistic, so we'll proceed to run a series of linear regression models.
+
+***
 
 # Task 2: Simple linear regression
 
@@ -109,6 +118,8 @@ summary(model1)
 **Q2.** How much variance is explained?
 
 <br>
+
+***
 
 # Task 3: Multiple linear regression
 
@@ -155,6 +166,8 @@ summary(model2)
 
 <br>
 
+***
+
 # Task 4: Adding interaction effects
 
 Adding interaction is fairly straightforward in R. All you need to do is "multiply" the terms you want to interact (using `*`).
@@ -175,6 +188,8 @@ summary(model3)
 **Q7.** Does the addition of interactions improve the model?
 
 <br>
+
+***
 
 # Task 5: Predictions
 
@@ -223,6 +238,8 @@ plot1
 ```
 
 
+***
+
 # Task 6: Checking assumptions
 
 We are going to focus on the two most basic assumption checks that you can do, which are to with the residuals. We will use graphic methods, since they are quite straightforward and easily understood. 
@@ -247,6 +264,10 @@ plot(model3,2)
 ```
 
 The result is a Q-Q plot or normal probability plot. It compares the residuals against the normal distribution. Put simply, the residuals (dots on the plot) should all lie on the diagonal line. Any obvious patterns would indicate that our model does not meet the normality assumption.
+
+In the plot above, we can see that the extremes of the distribution depart from normality, which could be indicating that there are outliers. It may also be the case that we need to control for other variables.
+
+
 
 ## 6.2. Homoscedasticity
 
@@ -299,3 +320,5 @@ This practical reproduces some of the materials created by Ana Morales-Gomez, UK
 ```{r, echo=FALSE, fig.align= "center", out.width="200px", fig.cap="Thank you ever so much, Ana! (gif via Giphy)", message=F, warning=F}
 knitr::include_graphics("https://media.giphy.com/media/u7iKYyUPdmfFm/giphy.gif")
 ```
+
+[^1]: Sorry, I couldn't find a precise citation for this. There seems to be a lot of attribution uncertainty regarding this quote.
