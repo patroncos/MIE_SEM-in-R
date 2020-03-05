@@ -42,9 +42,25 @@ The slides for this session are available [**here**](https://github.com/patronco
 
 This is a tutorial designed to give a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
 
-The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p4)
+#### The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p4)
 
-The code for this tutorial is the file "Practical4.Rmd"
+The R code for this tutorial is the file "Practical4.Rmd"
+
+#### The practical in Mplus is available [**here**](https://github.com/patroncos/MIE_SEM-in-R/blob/master/SEMinRs%20Session%203%20Regression%20in%20Mplus.pdf)
+
+The data in Mplus-readable format (.dat) is available [**here**](https://github.com/patroncos/MIE_SEM-in-R/blob/master/RegressionMplus.dat)
+
+The Mplus files are the following (click to see them):
+
+a) [Practical 4 - Task 1 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task1.inp)
+b) [Practical 4 - Task 1 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task1.out)
+c) [Practical 4 - Task 2 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task2.inp)
+d) [Practical 4 - Task 2 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task2.out)
+e) [Practical 4 - Task 3 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task%203.inp)
+f) [Practical 4 - Task 3 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task%203.out)
+g) [Practical 4 - Tasks 4-6 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task4-6.inp)
+h) [Practical 4 - Tasks 4-6 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task4-6.out)
+
 
 ### Practical 5: Binary logistic regression
 
