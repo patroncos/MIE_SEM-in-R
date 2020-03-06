@@ -123,9 +123,13 @@ summary(model1)
 
 # Task 3: Multiple linear regression
 
-Normally in social sciences, you wouldn't expect phenomena to be explained by only one variable. In the example we're working on 
+Normally in social sciences, you wouldn't expect phenomena to be explained by only one variable. In the example we're working on, we wouldn't expect the outcome to be only explained by the baseline score. We're actually interested in the effect of other variables, such as the trial condition.
+
+A multiple linear regression has the following form:
 
 $$Y_i = \beta_0 + \beta_1x_{i1} + \beta_2x_{i2} + \dots + \beta_nx_{in} + \epsilon_i$$
+
+
 All the terms mean the same as before, so we'll focus on the new information:
 
 $\beta_2$ is the expected increase in the dependent variable conditional on the rest of the variables remaining constant
