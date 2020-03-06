@@ -40,7 +40,7 @@ The slides for this session are available [**here**](https://github.com/patronco
 
 ### Practical 4: Linear regression
 
-This is a tutorial designed to give a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
+This is a tutorial designed to give you a taster of what it's like to analyse data using linear regression. The data used is from a cluster randomised controlled trial.
 
 #### The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p4)
 
