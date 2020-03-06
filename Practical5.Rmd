@@ -38,7 +38,7 @@ The variable wcond is the group or condition to which the class of the pupils wa
 
 # Typical workflow setup
 
-## Define a working directory
+## a) Define a working directory
 
 You can use any directory in your computer. As in the example below:
 
@@ -46,7 +46,7 @@ You can use any directory in your computer. As in the example below:
 setwd("C:/myfolder")
 ```
 
-## Read in data 
+## b) Read in data 
 
 This is from Wright and London's book website companion. 
 ```{r, message=FALSE, warning=F}
@@ -55,7 +55,7 @@ mydata<-read.delim("https://us.sagepub.com/sites/default/files/upm-binaries/2693
 
 Note: You can safely ignore the warning when reading in the data.
 
-## Load packages
+## c) Load packages
 
 You always need to load the packages that you will be using. In this practical, we need to use the `dplyr` package:
 
@@ -63,7 +63,11 @@ You always need to load the packages that you will be using. In this practical, 
 library(dplyr)
 ```
 
-# Outcome variable
+<br>
+
+***
+
+# Task 0: Outcome variable
 
 The data we will use for this practical does not have a binary dependent variable, but we can easily create one by using a threshold for our continuous dependent variable `sqw2`
 
@@ -90,6 +94,8 @@ mydata %>%
 The mean for those in group 0 should be lower than the mean for those in group 1.
 
 <br>
+
+***
 
 # Task 1: Fit a simple binary logistic model
 
@@ -128,6 +134,8 @@ This is in line with what we found in the linear model. However, we know that th
 
 <br>
 
+***
+
 # Task 2: Fit a multiple binary logistic model
 
 The logic behind a multiple binary logistic model is the same than for linear regression. We rarely rely on one independent variable to explain variation in a dependent variable. We can extend the previous equation to allow for more independent variables as follows:
@@ -160,7 +168,7 @@ exp(logmodel2$coefficients)
 
 ```
 
-Now you can see that children in Leaflet+plan+quiz are 2.42 times as likely to have an average or above score after the trial.
+Now you can see that children in Leaflet+plan+quiz are 2.42 times as likely to have an average or above score after the trial as children in the control group.
 
 ## Question time!
 
@@ -176,6 +184,10 @@ confint(logmodel2)
 exp(confint(logmodel2))
 
 ```
+
+<br>
+
+***
 
 # Bonus track
 

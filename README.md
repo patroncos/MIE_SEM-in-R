@@ -53,18 +53,25 @@ The data in Mplus-readable format (.dat) is available [**here**](https://github.
 The Mplus files are the following (click to see them):
 
 a) [Practical 4 - Task 1 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task1.inp)
+
 b) [Practical 4 - Task 1 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task1.out)
+
 c) [Practical 4 - Task 2 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task2.inp)
+
 d) [Practical 4 - Task 2 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task2.out)
+
 e) [Practical 4 - Task 3 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task%203.inp)
+
 f) [Practical 4 - Task 3 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task%203.out)
+
 g) [Practical 4 - Tasks 4-6 - Input](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_Task4-6.inp)
+
 h) [Practical 4 - Tasks 4-6 - Output](https://github.com/patroncos/MIE_SEM-in-R/blob/master/prac4_task4-6.out)
 
 
 ### Practical 5: Binary logistic regression
 
-This is a tutorial designed to give a taster of what it's like to analyse data using binary logistic regression. This is when our outcome of interest is binary (0s and 1s). The data used is from a cluster randomised controlled trial.
+This is a tutorial designed to give you a taster of what it's like to analyse data using binary logistic regression. This is when our outcome of interest is binary (0s and 1s). The data used is from a cluster randomised controlled trial.
 
 The practical in R is available [**here**](https://rpubs.com/patroncos/mie_seminar_s3_p5)
 

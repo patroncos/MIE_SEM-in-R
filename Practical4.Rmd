@@ -67,7 +67,7 @@ library(ggplot2)
 
 # Task 1: Correlation
 
-Before we start any data analysis process is to 
+Before we start any data analysis process, we need to explore our variables. In the case of linear regression, it is good to know how correlated our variables are.
 
 What is the correlation between exercise before and after the intervention?
 
@@ -242,7 +242,7 @@ plot1
 
 # Task 6: Checking assumptions
 
-We are going to focus on the two most basic assumption checks that you can do, which are to with the residuals. We will use graphic methods, since they are quite straightforward and easily understood. 
+We are going to focus on the two most basic assumption checks that you can do, which are to do with the residuals. We will use graphic methods, since they are quite straightforward and easily understood. 
 
 ## 6.1. Normality of residuals
 
@@ -263,7 +263,7 @@ To draw a Q-Q plot from your model results, you can quickly use the base package
 plot(model3,2)
 ```
 
-The result is a Q-Q plot or normal probability plot. It compares the residuals against the normal distribution. Put simply, the residuals (dots on the plot) should all lie on the diagonal line. Any obvious patterns would indicate that our model does not meet the normality assumption.
+The result is a Q-Q plot or normal quantile plot. It compares the residuals against the normal distribution. Put simply, the residuals (dots on the plot) should all lie on the diagonal line. Any obvious patterns would indicate that our model does not meet the normality assumption.
 
 In the plot above, we can see that the extremes of the distribution depart from normality, which could be indicating that there are outliers. It may also be the case that we need to control for other variables.
 
@@ -291,9 +291,7 @@ mydata$residuals <- residuals(model3)
 
 Then you can manipulate them as you wish and, for example, draw plots with `ggplot2`:
 
-This is to draw a histogram of the residuals:
-
-Or you can draw a much nicer plot with the `ggplot2` package:
+This is to draw a histogram of the residuals with the `ggplot2` package:
 
 ```{r, warning=F, message=F}
 hist <- ggplot(mydata, aes(residuals)) + geom_histogram()
